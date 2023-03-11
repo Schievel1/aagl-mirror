@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3.3.0
         with:
-          repository: https://github.com/an-anime-team/an-anime-game-launcher
+          repository: an-anime-team/an-anime-game-launcher
           submodules: true
 
       - name: Create zip
