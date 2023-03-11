@@ -16,7 +16,13 @@ jobs:
       - name: Read VERSION file
         id: getversion
         run: echo "::set-output name=version::$(cat release-versions/swagger-ui-latest.txt)"
-
+        
+      - name: Fetch release version
+        run: |
+          echo "::set-output name=version::$(\
+          curl -sL https://api.github.com/repos/Schievel1/testebase/releases/latest | \
+          jq -r ".tag_name")
+          
       - uses: actions/checkout@v3.3.0
         with:
           repository: an-anime-team/an-anime-game-launcher
