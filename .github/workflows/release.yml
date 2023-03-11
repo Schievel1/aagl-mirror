@@ -44,6 +44,6 @@ jobs:
           automatic_release_tag: ${{ env.latest_tag }}
           prerelease: true
           files: |
-            ${{ github.event.repository.name }}-complete.zip
-            ${{ github.event.repository.name }}-complete.tar.gz
+            aagl-${{ env.latest_tag }}-complete.zip
+            aagl-${{ env.latest_tag }}-complete.tar.gz
 
