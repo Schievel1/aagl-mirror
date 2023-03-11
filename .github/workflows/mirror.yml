@@ -1,0 +1,18 @@
+on: workflow_dispatch
+
+env:
+  SRC_REPO: https://github.com/Schievel1/testebase.git
+
+jobs:
+  mirror-repo-job:
+    name: mirror-job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: mirror-repository
+        uses: yesolutions/mirror-action@v0.6.0
+        with:
+          REMOTE: 'git@github.com:Schievel1/aagl-mirror.git'
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          GIT_SSH_NO_VERIFY_HOST: "true"
+          GIT_PUSH_ARGS: --tags --force

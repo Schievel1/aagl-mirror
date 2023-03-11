@@ -1,0 +1,29 @@
+name: release
+
+on:
+  release:
+    types: [published]
+        
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Create zip
+        run: |
+          cd ..
+          zip ${{ github.event.repository.name }}/${{ github.event.repository.name }}-nightly.zip ${{ github.event.repository.name }} -r
+          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
+          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+          echo "Tag name from env: ${{ env.GITHUB_REF_NAME }}"
+      
+      - uses: pyTooling/Actions/releaser@r0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{env.GITHUB_REF_NAME}}
+          files: ${{ github.event.repository.name }}-nightly.zip
