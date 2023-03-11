@@ -13,8 +13,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.3.0
         with:
+          repository: https://github.com/an-anime-team/an-anime-game-launcher
           submodules: true
 
       - name: Create zip
