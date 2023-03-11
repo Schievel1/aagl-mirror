@@ -17,18 +17,21 @@ jobs:
         with:
           repository: an-anime-team/an-anime-game-launcher
           submodules: true
-          ref: 1.2.5
+          ref: 3.1.4
 
       - name: Create zip
         run: |
           cd ..
-          zip ${{ github.event.repository.name }}/${{ github.event.repository.name }}-nightly.zip ${{ github.event.repository.name }} -r
+          zip ${{ github.event.repository.name }}/${{ github.event.repository.name }}-release-tarball.zip ${{ github.event.repository.name }} -r
           echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
           echo "Tag name from github.ref_name: ${{  github.ref_name }}"
           echo "Tag name from env: ${{ env.GITHUB_REF_NAME }}"
-      
-      - uses: pyTooling/Actions/releaser@r0
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{env.GITHUB_REF_NAME}}
-          files: ${{ github.event.repository.name }}-nightly.zip
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "3.1.4"
+          prerelease: true
+          files: |
+            ${{ github.event.repository.name }}-release-tarball.zip
+
