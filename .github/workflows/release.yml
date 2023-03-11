@@ -13,10 +13,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Read VERSION file
-        id: getversion
-        run: echo "::set-output name=version::$(cat release-versions/swagger-ui-latest.txt)"
-        
       - name: Fetch release version
         run: |
           echo "::set-output name=version::$(\
