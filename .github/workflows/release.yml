@@ -18,6 +18,9 @@ jobs:
           echo "::set-output name=version::$(\
           curl -sL https://api.github.com/repos/Schievel1/testebase/releases/latest | \
           jq -r ".tag_name")"
+          echo "$(\
+          curl -sL https://api.github.com/repos/Schievel1/testebase/releases/latest | \
+          jq -r ".tag_name")"
           
       - uses: actions/checkout@v3.3.0
         with:
@@ -29,7 +32,7 @@ jobs:
         run: |
           cd ..
           zip ${{ github.event.repository.name }}/${{ github.event.repository.name }}-release-tarball.zip ${{ github.event.repository.name }} -r
-          echo "from auto release tag: $(cat release-versions/swagger-ui-latest.txt)"
+          echo "from auto release tag: ${{ steps.getversion.outputs.version }}"
           
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
