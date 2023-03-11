@@ -24,6 +24,13 @@ jobs:
           repository: an-anime-team/an-anime-game-launcher
           submodules: true
           ref: ${{ env.latest_tag }}
+          
+      - name: Checkout anime-game-core
+        uses: actions/checkout@v3.3.0
+        with:
+          repository: an-anime-team/anime-game-core
+          path: anime-launcher-sdk/anime-game-core
+          ref: 'main'
 
       - name: Create zip
         run: |
