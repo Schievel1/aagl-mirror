@@ -28,5 +28,5 @@ jobs:
       - uses: pyTooling/Actions/releaser@r0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{env.GITHUB_REF_NAME}}
+          tag: 1.2.3
           files: ${{ github.event.repository.name }}-nightly.zip
