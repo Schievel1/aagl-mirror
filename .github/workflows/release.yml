@@ -2,10 +2,8 @@ name: release
 
 on:
   push:
-    branches: [ "main" ]
-    # Pattern matched against refs/tags
-    tags:        
-      - '*'           # Push events to every tag not containing /
+    paths:
+      - 'release-versions/*'
               
   workflow_dispatch:
   
@@ -15,24 +13,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Read VERSION file
+        id: getversion
+        run: echo "::set-output name=version::$(cat release-versions/swagger-ui-latest.txt)"
+
       - uses: actions/checkout@v3.3.0
         with:
           repository: an-anime-team/an-anime-game-launcher
           submodules: true
-          ref: 3.1.4
+          ref: ${{ steps.getversion.outputs.version }}
 
       - name: Create zip
         run: |
           cd ..
           zip ${{ github.event.repository.name }}/${{ github.event.repository.name }}-release-tarball.zip ${{ github.event.repository.name }} -r
-          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-          echo "Tag name from env: ${{ env.GITHUB_REF_NAME }}"
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "3.1.4"
+          automatic_release_tag: ${{ steps.getversion.outputs.version }}
           prerelease: true
           files: |
             ${{ github.event.repository.name }}-release-tarball.zip
