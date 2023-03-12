@@ -35,8 +35,8 @@ jobs:
       - name: Create zip
         run: |
           cd ..
-          zip ${{ github.event.repository.name }}/aagl-${{ env.latest_tag }}-complete.zip ${{ github.event.repository.name }} -r
-          tar -czvf ${{ github.event.repository.name }}/aagl-${{ env.latest_tag }}-complete.tar.gz ${{ github.event.repository.name }}
+          zip aagl-${{ env.latest_tag }}-complete.zip ${{ github.event.repository.name }} -r
+          tar -czvf aagl-${{ env.latest_tag }}-complete.tar.gz ${{ github.event.repository.name }}
           
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -44,6 +44,6 @@ jobs:
           automatic_release_tag: ${{ env.latest_tag }}
           prerelease: true
           files: |
-            aagl-${{ env.latest_tag }}-complete.zip
-            aagl-${{ env.latest_tag }}-complete.tar.gz
+            ../aagl-${{ env.latest_tag }}-complete.zip
+            ../aagl-${{ env.latest_tag }}-complete.tar.gz
 
