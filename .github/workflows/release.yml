@@ -39,7 +39,7 @@ jobs:
           tar -czvf aagl-${{ env.latest_tag }}-complete.tar.gz ${{ github.event.repository.name }}
           cd ${{ github.event.repository.name }}
           cargo vendor
-          tar -czvf vendor.tar.gz ${{ github.event.repository.name }}/vendor
+          tar -czvf vendor.tar.gz vendor
           
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
