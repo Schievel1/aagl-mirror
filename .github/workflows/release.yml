@@ -32,7 +32,7 @@ jobs:
           path: anime-launcher-sdk/anime-game-core
           ref: 'main'
 
-      - name: Create zip
+      - name: Create tarballs
         run: |
           cd ..
           zip aagl-${{ env.latest_tag }}-complete.zip ${{ github.event.repository.name }} -r
