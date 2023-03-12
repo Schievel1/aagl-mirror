@@ -37,6 +37,8 @@ jobs:
           cd ..
           zip aagl-${{ env.latest_tag }}-complete.zip ${{ github.event.repository.name }} -r
           tar -czvf aagl-${{ env.latest_tag }}-complete.tar.gz ${{ github.event.repository.name }}
+          cargo vendor
+          tar -czvf vendor.tar.gz ${{ github.event.repository.name }}/vendor
           
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -46,4 +48,5 @@ jobs:
           files: |
             ../aagl-${{ env.latest_tag }}-complete.zip
             ../aagl-${{ env.latest_tag }}-complete.tar.gz
+            ../vendor.tar.gz
 
