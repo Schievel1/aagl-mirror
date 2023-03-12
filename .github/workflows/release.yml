@@ -16,7 +16,7 @@ jobs:
       - name: Fetch release version
         run: |
           echo "latest_tag=$(\
-          curl -sL https://api.github.com/repos/Schievel1/testebase/releases/latest | \
+          curl -sL https://api.github.com/repos/an-anime-team/an-anime-game-launcher/releases/latest | \
           jq -r ".tag_name")" >> $GITHUB_ENV
           
       - uses: actions/checkout@v3.3.0
