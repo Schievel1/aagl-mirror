@@ -14,7 +14,7 @@ jobs:
           token: ${{ secrets.REPO_SCOPED_TOKEN }}
       - name: Fetch release version
         run: |
-          curl -sL https://api.github.com/repos/Schievel1/testebase/releases/latest | \
+          curl -sL https://api.github.com/repos/an-anime-team/an-anime-game-launcher/releases/latest | \
           jq -r ".tag_name" > release-versions/swagger-ui-latest.txt
       - name: Check for modified files
         id: git-check
