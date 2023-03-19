@@ -50,5 +50,5 @@ jobs:
           files: |
             ../aagl-${{ env.latest_tag }}-complete.zip
             ../aagl-${{ env.latest_tag }}-complete.tar.gz
-            ../vendor.tar.gz
+            ../aagl-${{ env.latest_tag }}-vendor.tar.gz
 
