@@ -46,7 +46,7 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: ${{ env.latest_tag }}
-          prerelease: true
+          prerelease: false
           files: |
             ../aagl-${{ env.latest_tag }}-complete.zip
             ../aagl-${{ env.latest_tag }}-complete.tar.gz
